@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Berklee.Models.TeacherModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Teacher List</h2>
+
+<p>
+    @Html.ActionLink("Add New Teacher", "SaveTeacher")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.teacherID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fullName)
+        </th>
+        
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.teacherID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fullName)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "UpdateTeacher", new { tID = item.teacherID }) |
+            @Html.ActionLink("Details", "TeacherDetail", new { tID = item.teacherID }) |
+            @Html.ActionLink("Delete", "DeleteTeacher", new { tID = item.teacherID })
+        </td>
+    </tr>
+}
+
+</table>

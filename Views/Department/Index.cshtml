@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Berklee.Models.DepartmentModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Department List</h2>
+
+<p>
+    @Html.ActionLink("Add New Department", "SaveDepartment")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.departmentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.departmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.extension)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.departmentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.departmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.extension)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateDepartment", new { dID = item.departmentID}) |            
+            @Html.ActionLink("Delete", "DeleteDepartment", new { dID = item.departmentID })
+        </td>
+    </tr>
+}
+
+</table>

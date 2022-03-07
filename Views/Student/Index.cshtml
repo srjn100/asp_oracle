@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Berklee.Models.StudentModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Student List</h2>
+
+<p>
+    @Html.ActionLink("Add New Student", "SaveStudent")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.studentID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.studentName)
+        </th>
+        
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.studentID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.studentName)
+        </td>        
+        <td>
+            @Html.ActionLink("Edit", "UpdateStudent", new { sID = item.studentID }, new { @class = "btn" }) |
+            @Html.ActionLink("Detail", "StudentDetail", new { sID = item.studentID }, new { @class = "btn" }) |
+            @Html.ActionLink("Delete", "DeleteStudent", new { sID = item.studentID }, new { @class = "btn" })
+        </td>
+    </tr>
+}
+
+</table>

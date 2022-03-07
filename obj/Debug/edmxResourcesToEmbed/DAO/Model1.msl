@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ASSIGNMENTs">
+      <EntityTypeMapping TypeName="Model.ASSIGNMENT">
+        <MappingFragment StoreEntitySet="ASSIGNMENT">
+          <ScalarProperty Name="ASSIGNMENTID" ColumnName="ASSIGNMENTID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="MODULE_MODULECODE" ColumnName="MODULE_MODULECODE" />
+          <ScalarProperty Name="ASSIGNMENT_TYPE_TYPEID" ColumnName="ASSIGNMENT_TYPE_TYPEID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSIGNMENT_STUDENT">
+      <EntityTypeMapping TypeName="Model.ASSIGNMENT_STUDENT">
+        <MappingFragment StoreEntitySet="ASSIGNMENT_STUDENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ASSIGNEDDATE" ColumnName="ASSIGNEDDATE" />
+          <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+          <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+          <ScalarProperty Name="ASSIGNMENT_ASSIGNMENTID" ColumnName="ASSIGNMENT_ASSIGNMENTID" />
+          <ScalarProperty Name="STUDENT_STUDENTID" ColumnName="STUDENT_STUDENTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ASSIGNMENT_TYPE">
+      <EntityTypeMapping TypeName="Model.ASSIGNMENT_TYPE">
+        <MappingFragment StoreEntitySet="ASSIGNMENT_TYPE">
+          <ScalarProperty Name="TYPEID" ColumnName="TYPEID" />
+          <ScalarProperty Name="TYPENAME" ColumnName="TYPENAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTs">
+      <EntityTypeMapping TypeName="Model.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENT">
+          <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+          <ScalarProperty Name="DEPARTMENTNAME" ColumnName="DEPARTMENTNAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="EXTENSION" ColumnName="EXTENSION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYMENTs">
+      <EntityTypeMapping TypeName="Model.PAYMENT">
+        <MappingFragment StoreEntitySet="PAYMENT">
+          <ScalarProperty Name="PAYMENTID" ColumnName="PAYMENTID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="DATEPAID" ColumnName="DATEPAID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTs">
+      <EntityTypeMapping TypeName="Model.STUDENT">
+        <MappingFragment StoreEntitySet="STUDENT">
+          <ScalarProperty Name="STUDENTID" ColumnName="STUDENTID" />
+          <ScalarProperty Name="STUDENTNAME" ColumnName="STUDENTNAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DEPARTMENT_DEPARTMENTID" ColumnName="DEPARTMENT_DEPARTMENTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_MODULE">
+      <EntityTypeMapping TypeName="Model.STUDENT_MODULE">
+        <MappingFragment StoreEntitySet="STUDENT_MODULE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ATTENDANCE" ColumnName="ATTENDANCE" />
+          <ScalarProperty Name="MODULE_MODULECODE" ColumnName="MODULE_MODULECODE" />
+          <ScalarProperty Name="STUDENT_STUDENTID" ColumnName="STUDENT_STUDENTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_TO_TEACHER">
+      <EntityTypeMapping TypeName="Model.STUDENT_TO_TEACHER">
+        <MappingFragment StoreEntitySet="STUDENT_TO_TEACHER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PROMOTEDDATE" ColumnName="PROMOTEDDATE" />
+          <ScalarProperty Name="STUDENT_STUDENTID" ColumnName="STUDENT_STUDENTID" />
+          <ScalarProperty Name="TEACHER_TEACHERID" ColumnName="TEACHER_TEACHERID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHERs">
+      <EntityTypeMapping TypeName="Model.TEACHER">
+        <MappingFragment StoreEntitySet="TEACHER">
+          <ScalarProperty Name="TEACHERID" ColumnName="TEACHERID" />
+          <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_DEPARTMENT">
+      <EntityTypeMapping TypeName="Model.TEACHER_DEPARTMENT">
+        <MappingFragment StoreEntitySet="TEACHER_DEPARTMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TEACHER_TEACHERID" ColumnName="TEACHER_TEACHERID" />
+          <ScalarProperty Name="DEPARTMENT_DEPARTMENTID" ColumnName="DEPARTMENT_DEPARTMENTID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_MODULE">
+      <EntityTypeMapping TypeName="Model.TEACHER_MODULE">
+        <MappingFragment StoreEntitySet="TEACHER_MODULE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MODULE_MODULECODE" ColumnName="MODULE_MODULECODE" />
+          <ScalarProperty Name="TEACHER_TEACHERID" ColumnName="TEACHER_TEACHERID" />
+          <ScalarProperty Name="STARTDATE" ColumnName="STARTDATE" />
+          <ScalarProperty Name="ENDDATE" ColumnName="ENDDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_MODULE_PAYMENT">
+      <EntityTypeMapping TypeName="Model.STUDENT_MODULE_PAYMENT">
+        <MappingFragment StoreEntitySet="STUDENT_MODULE_PAYMENT">
+          <ScalarProperty Name="PAYMENT_PAYMENTID" ColumnName="PAYMENT_PAYMENTID" />
+          <ScalarProperty Name="MODULE_MODULECODE" ColumnName="MODULE_MODULECODE" />
+          <ScalarProperty Name="STUDENT_STUDENTID" ColumnName="STUDENT_STUDENTID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MODULEs">
+      <EntityTypeMapping TypeName="Model.MODULE">
+        <MappingFragment StoreEntitySet="MODULE">
+          <ScalarProperty Name="SYLLABUS" ColumnName="SYLLABUS" />
+          <ScalarProperty Name="MODULENAME" ColumnName="MODULENAME" />
+          <ScalarProperty Name="MODULECODE" ColumnName="MODULECODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0678fb0459da43e584382451c32783a2" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.ASSIGNMENT" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ASSIGNMENT_STUDENT" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ASSIGNMENT_TYPE" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEPARTMENT" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PAYMENT" Width="1.5" PointX="7.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT_MODULE" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT_TO_TEACHER" Width="1.5" PointX="5.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEACHER" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEACHER_DEPARTMENT" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEACHER_MODULE" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.ASSIGNMENT_ASSIGNMENT_TYPE_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.ASSIGNMENT_STUDENT_STUDENT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_DEPARTMENT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_MODULE_STUDENT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_TO_TEACHER_STUDENT_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_TO_TEACHER_TEACHER_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TEACHER_DEPARTMENT_TEACHER_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TEACHER_MODULE_TEACHER_FK" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.STUDENT_MODULE_PAYMENT" Width="1.5" PointX="11" PointY="4.875" />
+        <AssociationConnector Association="Model.S_M_P_PAYMENT_FK" />
+        <AssociationConnector Association="Model.S_M_P_STUDENT_FK" />
+        <EntityTypeShape EntityType="Model.MODULE" Width="1.5" PointX="3" PointY="2.75" />
+        <AssociationConnector Association="Model.ASSIGNMENT_MODULE_FK" />
+        <AssociationConnector Association="Model.S_M_P_MODULE_FK" />
+        <AssociationConnector Association="Model.STUDENT_MODULE_MODULE_FK" />
+        <AssociationConnector Association="Model.TEACHER_MODULE_MODULE_FK" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

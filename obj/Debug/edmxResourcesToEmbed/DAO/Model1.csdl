@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ASSIGNMENT">
+    <Key>
+      <PropertyRef Name="ASSIGNMENTID" />
+    </Key>
+    <Property Name="ASSIGNMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MODULE_MODULECODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ASSIGNMENT_TYPE_TYPEID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="ASSIGNMENT_TYPE" Relationship="Self.ASSIGNMENT_ASSIGNMENT_TYPE_FK" FromRole="ASSIGNMENT" ToRole="ASSIGNMENT_TYPE" />
+    <NavigationProperty Name="MODULE" Relationship="Model.ASSIGNMENT_MODULE_FK" FromRole="ASSIGNMENT" ToRole="MODULE" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT_STUDENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ASSIGNEDDATE" Type="DateTime" Nullable="false" />
+    <Property Name="DUEDATE" Type="DateTime" Nullable="false" />
+    <Property Name="GRADE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="ASSIGNMENT_ASSIGNMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STUDENT_STUDENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="STUDENT" Relationship="Self.ASSIGNMENT_STUDENT_STUDENT_FK" FromRole="ASSIGNMENT_STUDENT" ToRole="STUDENT" />
+  </EntityType>
+  <EntityType Name="ASSIGNMENT_TYPE">
+    <Key>
+      <PropertyRef Name="TYPEID" />
+    </Key>
+    <Property Name="TYPEID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TYPENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ASSIGNMENTs" Relationship="Self.ASSIGNMENT_ASSIGNMENT_TYPE_FK" FromRole="ASSIGNMENT_TYPE" ToRole="ASSIGNMENT" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="DEPARTMENTID" />
+    </Key>
+    <Property Name="DEPARTMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DEPARTMENTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="STUDENTs" Relationship="Self.STUDENT_DEPARTMENT_FK" FromRole="DEPARTMENT" ToRole="STUDENT" />
+  </EntityType>
+  <EntityType Name="PAYMENT">
+    <Key>
+      <PropertyRef Name="PAYMENTID" />
+    </Key>
+    <Property Name="PAYMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AMOUNT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DATEPAID" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="STUDENT_MODULE_PAYMENT" Relationship="Model.S_M_P_PAYMENT_FK" FromRole="PAYMENT" ToRole="STUDENT_MODULE_PAYMENT" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="STUDENTID" />
+    </Key>
+    <Property Name="STUDENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STUDENTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DEPARTMENT_DEPARTMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="ASSIGNMENT_STUDENT" Relationship="Self.ASSIGNMENT_STUDENT_STUDENT_FK" FromRole="STUDENT" ToRole="ASSIGNMENT_STUDENT" />
+    <NavigationProperty Name="DEPARTMENT" Relationship="Self.STUDENT_DEPARTMENT_FK" FromRole="STUDENT" ToRole="DEPARTMENT" />
+    <NavigationProperty Name="STUDENT_MODULE" Relationship="Self.STUDENT_MODULE_STUDENT_FK" FromRole="STUDENT" ToRole="STUDENT_MODULE" />
+    <NavigationProperty Name="STUDENT_TO_TEACHER" Relationship="Self.STUDENT_TO_TEACHER_STUDENT_FK" FromRole="STUDENT" ToRole="STUDENT_TO_TEACHER" />
+    <NavigationProperty Name="STUDENT_MODULE_PAYMENT" Relationship="Model.S_M_P_STUDENT_FK" FromRole="STUDENT" ToRole="STUDENT_MODULE_PAYMENT" />
+  </EntityType>
+  <EntityType Name="STUDENT_MODULE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="ATTENDANCE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="MODULE_MODULECODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STUDENT_STUDENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="STUDENT" Relationship="Self.STUDENT_MODULE_STUDENT_FK" FromRole="STUDENT_MODULE" ToRole="STUDENT" />
+    <NavigationProperty Name="MODULE" Relationship="Model.STUDENT_MODULE_MODULE_FK" FromRole="STUDENT_MODULE" ToRole="MODULE" />
+  </EntityType>
+  <EntityType Name="STUDENT_TO_TEACHER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="PROMOTEDDATE" Type="DateTime" Nullable="false" />
+    <Property Name="STUDENT_STUDENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TEACHER_TEACHERID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="STUDENT" Relationship="Self.STUDENT_TO_TEACHER_STUDENT_FK" FromRole="STUDENT_TO_TEACHER" ToRole="STUDENT" />
+    <NavigationProperty Name="TEACHER" Relationship="Self.STUDENT_TO_TEACHER_TEACHER_FK" FromRole="STUDENT_TO_TEACHER" ToRole="TEACHER" />
+  </EntityType>
+  <EntityType Name="TEACHER">
+    <Key>
+      <PropertyRef Name="TEACHERID" />
+    </Key>
+    <Property Name="TEACHERID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="FULLNAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="STUDENT_TO_TEACHER" Relationship="Self.STUDENT_TO_TEACHER_TEACHER_FK" FromRole="TEACHER" ToRole="STUDENT_TO_TEACHER" />
+    <NavigationProperty Name="TEACHER_DEPARTMENT" Relationship="Self.TEACHER_DEPARTMENT_TEACHER_FK" FromRole="TEACHER" ToRole="TEACHER_DEPARTMENT" />
+    <NavigationProperty Name="TEACHER_MODULE" Relationship="Self.TEACHER_MODULE_TEACHER_FK" FromRole="TEACHER" ToRole="TEACHER_MODULE" />
+  </EntityType>
+  <EntityType Name="TEACHER_DEPARTMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="TEACHER_TEACHERID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="DEPARTMENT_DEPARTMENTID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <NavigationProperty Name="TEACHER" Relationship="Self.TEACHER_DEPARTMENT_TEACHER_FK" FromRole="TEACHER_DEPARTMENT" ToRole="TEACHER" />
+  </EntityType>
+  <EntityType Name="TEACHER_MODULE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="MODULE_MODULECODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEACHER_TEACHERID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="STARTDATE" Type="DateTime" />
+    <Property Name="ENDDATE" Type="DateTime" />
+    <NavigationProperty Name="TEACHER" Relationship="Self.TEACHER_MODULE_TEACHER_FK" FromRole="TEACHER_MODULE" ToRole="TEACHER" />
+    <NavigationProperty Name="MODULE" Relationship="Model.TEACHER_MODULE_MODULE_FK" FromRole="TEACHER_MODULE" ToRole="MODULE" />
+  </EntityType>
+  <Association Name="ASSIGNMENT_ASSIGNMENT_TYPE_FK">
+    <End Role="ASSIGNMENT_TYPE" Type="Self.ASSIGNMENT_TYPE" Multiplicity="1" />
+    <End Role="ASSIGNMENT" Type="Self.ASSIGNMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ASSIGNMENT_TYPE">
+        <PropertyRef Name="TYPEID" />
+      </Principal>
+      <Dependent Role="ASSIGNMENT">
+        <PropertyRef Name="ASSIGNMENT_TYPE_TYPEID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ASSIGNMENT_STUDENT_STUDENT_FK">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+    <End Role="ASSIGNMENT_STUDENT" Type="Self.ASSIGNMENT_STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="STUDENTID" />
+      </Principal>
+      <Dependent Role="ASSIGNMENT_STUDENT">
+        <PropertyRef Name="STUDENT_STUDENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_DEPARTMENT_FK">
+    <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="DEPARTMENTID" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="DEPARTMENT_DEPARTMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_MODULE_STUDENT_FK">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+    <End Role="STUDENT_MODULE" Type="Self.STUDENT_MODULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="STUDENTID" />
+      </Principal>
+      <Dependent Role="STUDENT_MODULE">
+        <PropertyRef Name="STUDENT_STUDENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_TO_TEACHER_STUDENT_FK">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+    <End Role="STUDENT_TO_TEACHER" Type="Self.STUDENT_TO_TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="STUDENTID" />
+      </Principal>
+      <Dependent Role="STUDENT_TO_TEACHER">
+        <PropertyRef Name="STUDENT_STUDENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_TO_TEACHER_TEACHER_FK">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="1" />
+    <End Role="STUDENT_TO_TEACHER" Type="Self.STUDENT_TO_TEACHER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="TEACHERID" />
+      </Principal>
+      <Dependent Role="STUDENT_TO_TEACHER">
+        <PropertyRef Name="TEACHER_TEACHERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHER_DEPARTMENT_TEACHER_FK">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="1" />
+    <End Role="TEACHER_DEPARTMENT" Type="Self.TEACHER_DEPARTMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="TEACHERID" />
+      </Principal>
+      <Dependent Role="TEACHER_DEPARTMENT">
+        <PropertyRef Name="TEACHER_TEACHERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHER_MODULE_TEACHER_FK">
+    <End Role="TEACHER" Type="Self.TEACHER" Multiplicity="1" />
+    <End Role="TEACHER_MODULE" Type="Self.TEACHER_MODULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHER">
+        <PropertyRef Name="TEACHERID" />
+      </Principal>
+      <Dependent Role="TEACHER_MODULE">
+        <PropertyRef Name="TEACHER_TEACHERID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ASSIGNMENTs" EntityType="Self.ASSIGNMENT" />
+    <EntitySet Name="ASSIGNMENT_STUDENT" EntityType="Self.ASSIGNMENT_STUDENT" />
+    <EntitySet Name="ASSIGNMENT_TYPE" EntityType="Self.ASSIGNMENT_TYPE" />
+    <EntitySet Name="DEPARTMENTs" EntityType="Self.DEPARTMENT" />
+    <EntitySet Name="PAYMENTs" EntityType="Self.PAYMENT" />
+    <EntitySet Name="STUDENTs" EntityType="Self.STUDENT" />
+    <EntitySet Name="STUDENT_MODULE" EntityType="Self.STUDENT_MODULE" />
+    <EntitySet Name="STUDENT_TO_TEACHER" EntityType="Self.STUDENT_TO_TEACHER" />
+    <EntitySet Name="TEACHERs" EntityType="Self.TEACHER" />
+    <EntitySet Name="TEACHER_DEPARTMENT" EntityType="Self.TEACHER_DEPARTMENT" />
+    <EntitySet Name="TEACHER_MODULE" EntityType="Self.TEACHER_MODULE" />
+    <AssociationSet Name="ASSIGNMENT_ASSIGNMENT_TYPE_FK" Association="Self.ASSIGNMENT_ASSIGNMENT_TYPE_FK">
+      <End Role="ASSIGNMENT_TYPE" EntitySet="ASSIGNMENT_TYPE" />
+      <End Role="ASSIGNMENT" EntitySet="ASSIGNMENTs" />
+    </AssociationSet>
+    <AssociationSet Name="ASSIGNMENT_STUDENT_STUDENT_FK" Association="Self.ASSIGNMENT_STUDENT_STUDENT_FK">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="ASSIGNMENT_STUDENT" EntitySet="ASSIGNMENT_STUDENT" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_DEPARTMENT_FK" Association="Self.STUDENT_DEPARTMENT_FK">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_MODULE_STUDENT_FK" Association="Self.STUDENT_MODULE_STUDENT_FK">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="STUDENT_MODULE" EntitySet="STUDENT_MODULE" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_TO_TEACHER_STUDENT_FK" Association="Self.STUDENT_TO_TEACHER_STUDENT_FK">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="STUDENT_TO_TEACHER" EntitySet="STUDENT_TO_TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_TO_TEACHER_TEACHER_FK" Association="Self.STUDENT_TO_TEACHER_TEACHER_FK">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="STUDENT_TO_TEACHER" EntitySet="STUDENT_TO_TEACHER" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHER_DEPARTMENT_TEACHER_FK" Association="Self.TEACHER_DEPARTMENT_TEACHER_FK">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="TEACHER_DEPARTMENT" EntitySet="TEACHER_DEPARTMENT" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHER_MODULE_TEACHER_FK" Association="Self.TEACHER_MODULE_TEACHER_FK">
+      <End Role="TEACHER" EntitySet="TEACHERs" />
+      <End Role="TEACHER_MODULE" EntitySet="TEACHER_MODULE" />
+    </AssociationSet>
+    <EntitySet Name="STUDENT_MODULE_PAYMENT" EntityType="Model.STUDENT_MODULE_PAYMENT" />
+    <AssociationSet Name="S_M_P_PAYMENT_FK" Association="Model.S_M_P_PAYMENT_FK">
+      <End Role="PAYMENT" EntitySet="PAYMENTs" />
+      <End Role="STUDENT_MODULE_PAYMENT" EntitySet="STUDENT_MODULE_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="S_M_P_STUDENT_FK" Association="Model.S_M_P_STUDENT_FK">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="STUDENT_MODULE_PAYMENT" EntitySet="STUDENT_MODULE_PAYMENT" />
+    </AssociationSet>
+    <EntitySet Name="MODULEs" EntityType="Model.MODULE" />
+    <AssociationSet Name="ASSIGNMENT_MODULE_FK" Association="Model.ASSIGNMENT_MODULE_FK">
+      <End Role="MODULE" EntitySet="MODULEs" />
+      <End Role="ASSIGNMENT" EntitySet="ASSIGNMENTs" />
+    </AssociationSet>
+    <AssociationSet Name="S_M_P_MODULE_FK" Association="Model.S_M_P_MODULE_FK">
+      <End Role="MODULE" EntitySet="MODULEs" />
+      <End Role="STUDENT_MODULE_PAYMENT" EntitySet="STUDENT_MODULE_PAYMENT" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_MODULE_MODULE_FK" Association="Model.STUDENT_MODULE_MODULE_FK">
+      <End Role="MODULE" EntitySet="MODULEs" />
+      <End Role="STUDENT_MODULE" EntitySet="STUDENT_MODULE" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHER_MODULE_MODULE_FK" Association="Model.TEACHER_MODULE_MODULE_FK">
+      <End Role="MODULE" EntitySet="MODULEs" />
+      <End Role="TEACHER_MODULE" EntitySet="TEACHER_MODULE" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="STUDENT_MODULE_PAYMENT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="STUDENT_STUDENTID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+    <Property Name="MODULE_MODULECODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PAYMENT_PAYMENTID" Type="Decimal" Precision="38" Scale="0" />
+    <NavigationProperty Name="PAYMENT" Relationship="Model.S_M_P_PAYMENT_FK" FromRole="STUDENT_MODULE_PAYMENT" ToRole="PAYMENT" />
+    <NavigationProperty Name="STUDENT" Relationship="Model.S_M_P_STUDENT_FK" FromRole="STUDENT_MODULE_PAYMENT" ToRole="STUDENT" />
+    <NavigationProperty Name="MODULE" Relationship="Model.S_M_P_MODULE_FK" FromRole="STUDENT_MODULE_PAYMENT" ToRole="MODULE" />
+  </EntityType>
+  <Association Name="S_M_P_PAYMENT_FK">
+    <End Type="Model.PAYMENT" Role="PAYMENT" Multiplicity="0..1" />
+    <End Type="Model.STUDENT_MODULE_PAYMENT" Role="STUDENT_MODULE_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAYMENT">
+        <PropertyRef Name="PAYMENTID" />
+      </Principal>
+      <Dependent Role="STUDENT_MODULE_PAYMENT">
+        <PropertyRef Name="PAYMENT_PAYMENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="S_M_P_STUDENT_FK">
+    <End Type="Model.STUDENT" Role="STUDENT" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.STUDENT_MODULE_PAYMENT" Role="STUDENT_MODULE_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="STUDENTID" />
+      </Principal>
+      <Dependent Role="STUDENT_MODULE_PAYMENT">
+        <PropertyRef Name="STUDENT_STUDENTID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MODULE">
+    <Key>
+      <PropertyRef Name="MODULECODE" />
+    </Key>
+    <Property Name="MODULECODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MODULENAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SYLLABUS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ASSIGNMENTs" Relationship="Model.ASSIGNMENT_MODULE_FK" FromRole="MODULE" ToRole="ASSIGNMENT" />
+    <NavigationProperty Name="STUDENT_MODULE_PAYMENT" Relationship="Model.S_M_P_MODULE_FK" FromRole="MODULE" ToRole="STUDENT_MODULE_PAYMENT" />
+    <NavigationProperty Name="STUDENT_MODULE" Relationship="Model.STUDENT_MODULE_MODULE_FK" FromRole="MODULE" ToRole="STUDENT_MODULE" />
+    <NavigationProperty Name="TEACHER_MODULE" Relationship="Model.TEACHER_MODULE_MODULE_FK" FromRole="MODULE" ToRole="TEACHER_MODULE" />
+  </EntityType>
+  <Association Name="ASSIGNMENT_MODULE_FK">
+    <End Type="Model.MODULE" Role="MODULE" Multiplicity="1" />
+    <End Type="Model.ASSIGNMENT" Role="ASSIGNMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MODULECODE" />
+      </Principal>
+      <Dependent Role="ASSIGNMENT">
+        <PropertyRef Name="MODULE_MODULECODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="S_M_P_MODULE_FK">
+    <End Type="Model.MODULE" Role="MODULE" Multiplicity="1" />
+    <End Type="Model.STUDENT_MODULE_PAYMENT" Role="STUDENT_MODULE_PAYMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MODULECODE" />
+      </Principal>
+      <Dependent Role="STUDENT_MODULE_PAYMENT">
+        <PropertyRef Name="MODULE_MODULECODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_MODULE_MODULE_FK">
+    <End Type="Model.MODULE" Role="MODULE" Multiplicity="1" />
+    <End Type="Model.STUDENT_MODULE" Role="STUDENT_MODULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MODULECODE" />
+      </Principal>
+      <Dependent Role="STUDENT_MODULE">
+        <PropertyRef Name="MODULE_MODULECODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHER_MODULE_MODULE_FK">
+    <End Type="Model.MODULE" Role="MODULE" Multiplicity="1" />
+    <End Type="Model.TEACHER_MODULE" Role="TEACHER_MODULE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MODULE">
+        <PropertyRef Name="MODULECODE" />
+      </Principal>
+      <Dependent Role="TEACHER_MODULE">
+        <PropertyRef Name="MODULE_MODULECODE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

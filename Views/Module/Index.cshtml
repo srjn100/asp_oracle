@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Berklee.Models.ModuleModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Module List</h2>
+
+<p>
+    @Html.ActionLink("Add New Module", "SaveModule")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.moduleCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.moduleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.syllabus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.moduleCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.moduleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.syllabus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpdateModule", new { mCode = item.moduleCode }) |
+            @Html.ActionLink("Delete", "DeleteModule", new { mCode = item.moduleCode })
+        </td>
+    </tr>
+}
+
+</table>
